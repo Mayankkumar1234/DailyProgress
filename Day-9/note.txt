@@ -1,0 +1,4 @@
+- Differnce between CRA and vite project...
+- vite was introduced after es6 features
+
+What are synthetic events in js :-
