@@ -1,0 +1,21 @@
+#main{
+  width: 200px;
+  height: 200px;
+  border: 2px solid red;
+  border-radius: 50%;
+  text-align: center;
+ background-image: url("https://www.w3schools.com/css/img_lights.jpg");
+ background-repeat: no-repeat;
+  background-position: center;
+  
+  background-size: 200px 200px;
+ border-width: 10px;
+  border-color: rgb(132, 132, 150);
+  outline: orange solid 5px;
+  margin: auto;
+}
+
+h1{
+  color:rgba(0,0,0,0.1);
+  font-size: 20px;
+}

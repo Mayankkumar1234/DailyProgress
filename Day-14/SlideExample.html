@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Slider throught Javascript: DOM</title>
+
+    <style>
+
+        *{
+            margin: 0;
+        }
+
+        #box{
+            padding: 5px;
+            position: relative;
+        }
+        .slides{
+            position: relative;
+        }
+        .slides>img{
+            width: 100%;
+        }
+        #pre, #next{
+            padding: 10px;
+            font-size: 25px;
+            position: absolute;
+            top: 30%;
+            border: none;
+            background-color: black;
+            opacity: .5;
+            color: white;
+            transition: all 1s;
+        }
+        #pre:hover, #next:hover{
+            opacity: 1;
+        }
+        #next{
+            right: 0;
+        }
+
+        #dots{
+            width: 50%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            gap: 10px;
+        }
+        #dots>div{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+        }
+        .slides>p{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: rgb(37, 37, 37);
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+     <div id="box" >
+        <div  class="slides">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/cb2fcb04a9f446d4.jpg?q=20" alt="">
+            <p>Caption: 1/5</p>
+        </div>
+        <div  class="slides">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/14691d790ec410a9.jpg?q=20" alt="">
+            <p>Caption: 2/5</p>
+        </div>
+        <div  class="slides">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/f09f551230626a04.jpg?q=20" alt="">
+            <p>Caption: 3/5</p>
+        </div>
+        <div  class="slides">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/17a2c4ed00866b1a.jpg?q=20" alt="">
+            <p>Caption: 4/5</p>
+        </div>
+        <div  class="slides">
+            <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/1f25201ced5d720d.jpg?q=20" alt="">
+            <p>Caption: 5/5</p>
+        </div>
+        <button onclick="addSlide(-1)" id="pre"><</button>
+        <button onclick="addSlide(1)" id="next">></button>
+     </div>
+
+     <div id="dots">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+     </div>
+    
+</body>
+
+</html>
+
+<script> 
+
+
+let images = document.querySelectorAll(".slides");
+let dots = document.querySelectorAll("#dots>div");
+
+let index =1;
+slideDisplay(index)
+function addSlide(num){
+  index = index+num;
+  slideDisplay(index)
+}
+
+function slideDisplay(idx){
+  if(idx <= 0){
+    index = 1;
+  }
+   if(idx>=images.length){
+      index =1;
+   }
+
+   for(let i=0;i<images.length;i++){
+    images[i].style.display = "none"
+   }
+    for(let i=0;i<dots.length;i++){
+    dots[i].style.backgroundColor = "black"
+   }
+   images[index-1].style.display = "block";
+   dots[index-1].style.backgroundColor = "red";
+}
+
+
+function automateFun(){
+  addSlide(1);
+
+  setTimeout(automateFun, 2000)
+}
+automateFun()
+</script>

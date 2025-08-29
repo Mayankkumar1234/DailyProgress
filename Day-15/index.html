@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  p{
+    color: blue;
+    border: 2px solid #000;
+    outline: 5px solid #bd3030;
+    text-align: center;
+    text-decoration: dotted;
+    text-transform: lowercase;
+    text-indent: 20px;
+   letter-spacing: 2px;
+   line-height: 28px;
+    text-shadow: 2px 2px 5px red;
+    word-spacing: 12px;
+    font-size: 28px;
+  } 
+    #grandparent {
+      border: 3px solid darkblue;
+      padding: 20px;
+      margin: 20px;
+      background-color: #e0f0ff;
+      font-size: 18px;
+    }
+
+    #parent {
+      border: 3px solid green;
+      padding: 15px;
+      margin: 15px;
+      background-color: #e8ffe8;
+      font-size: 16px;
+    }
+
+    #child {
+      border: 3px solid crimson;
+      padding: 10px;
+      margin: 10px;
+      background-color: #ffeaea;
+      font-size: 14px;
+    } 
+
+</style>
+<body>
+  <p>This is a paragraph</p>
+  <div onclick="secondFun()" id="grandparent"> 
+    This is grandparent
+    <div onclick="firstFun(event)" id="parent" >
+      This is parent
+      
+  </div>
+  </div>
+
+  <a onclick="redirectFun()" href="#">Want to redirect to newPage? Click</a>
+
+</body>
+<script>
+  // let grandparent = document.getElementById("grandparent");
+  // let parent = document.getElementById("parent");
+  // let child = document.getElementById("child");
+
+ 
+  // grandparent.addEventListener("click",()=>{
+  //   alert("Grandparent was clicked")
+  // }, true)
+  //   parent.addEventListener("click",()=>{
+  //   alert("Parent was clicked")
+  // }, true)
+  //   child.addEventListener("click",()=>{
+  //   alert("Child was clicked")
+  // }, true)
+
+function secondFun(){
+  alert("Outer function was clicked")
+}
+function firstFun(event)
+{
+  alert("Inner function was clicked");
+   event.stopPropagation()
+}
+function redirectFun(){
+  window.location.href = "newPage.html"
+}
+</script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="main" >
+<h1>Hello world</h1>
+  </div>
+</body>
+</html>
