@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 400px;
+      height: 600px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #0084ff;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      max-width: 70%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 15px;
+      word-wrap: break-word;
+    }
+
+    .message.self {
+      align-self: flex-end;
+      background: #0084ff;
+      color: white;
+      border-bottom-right-radius: 0;
+    }
+
+    .message.other {
+      align-self: flex-start;
+      background: #e5e5ea;
+      color: black;
+      border-bottom-left-radius: 0;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .chat-input button {
+      background: #0084ff;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .chat-input button:hover {
+      background: #006fd6;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">💬 My Chat App</div>
+    <div id="messages" class="messages"></div>
+    <div class="chat-input">
+      <input type="text" id="msg" placeholder="Type a message..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    const msgInput = document.getElementById("msg");
+    const messagesDiv = document.getElementById("messages");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // Receive welcome message / others
+    socket.on("message", (data) => {
+      addMessage(data, "other");
+    });
+
+    socket.on("chat", (data) => {
+      addMessage(data, "other");
+    });
+
+    // Send message
+    sendBtn.addEventListener("click", () => {
+      const msg = msgInput.value.trim();
+      if (msg !== "") {
+        addMessage(msg, "self"); // show on own screen
+        socket.emit("chat", msg); // send to server
+        msgInput.value = "";
+      }
+    });
+
+    // Add message bubble
+    function addMessage(text, type) {
+      const msgElem = document.createElement("div");
+      msgElem.classList.add("message", type);
+      msgElem.textContent = text;
+      messagesDiv.appendChild(msgElem);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight; // auto scroll down
+    }
+  </script>
+</body>
+</html>
